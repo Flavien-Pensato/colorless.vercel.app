@@ -1,0 +1,21 @@
+{
+  "name": "colorless.vercel.app",
+  "version": "1.0.0",
+  "description": "Get tint and shade of colors",
+  "repository": "git@github.com:Flavien-Pensato/colorless.vercel.app.git",
+  "author": "Flavien-Pensato <flavien.pensato@aventus.io>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["packages/colorless", "packages/app"],
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "eslint": "^7.26.0",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-react": "^7.23.2",
+    "jest": "^26.6.3",
+    "prettier": "^2.3.0",
+    "typescript": "^4.2.4"
+  }
+}
