@@ -1,0 +1,8 @@
+**/node_modules/*
+**/out/*
+**/dist/*
+**/.next/*
+.yarn
+.yarnrc
+next-env.d.ts
+node_modules

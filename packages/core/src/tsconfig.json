@@ -1,0 +1,10 @@
+{
+  "extends": "../../../config/next.tsconfig.json",
+  "include": ["next-env.d.ts", "**/*.ts", "scripts/*.ts"],
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2017",
+    "isolatedModules": false
+  },
+  "exclude": ["node_modules"]
+}

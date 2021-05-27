@@ -1,0 +1,9 @@
+{
+  "extends": "./config/next.tsconfig.json",
+  "include": ["./tests/**/*", "./packages/**/*"],
+  "compilerOptions": {
+    "module": "CommonJS",
+    "isolatedModules": false,
+    "baseUrl": "."
+  }
+}

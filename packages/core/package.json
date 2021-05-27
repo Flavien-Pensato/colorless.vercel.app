@@ -1,0 +1,28 @@
+{
+  "name": "@colorless/core",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Get tint and shade of colors",
+  "source": "./src/colorless.ts",
+  "exports": "./dist/colorless.modern.js",
+  "main": "./dist/colorless.cjs",
+  "module": "./dist/colorless.module.js",
+  "unpkg": "./dist/colorless.umd.js",
+  "repository": "git@github.com:Flavien-Pensato/colorless.vercel.app.git/packages/colorless",
+  "author": "Flavien-Pensato <flavien.pensato@aventus.io>",
+  "license": "MIT",
+  "scripts": {
+    "jest": "NODE_ENV=test jest",
+    "test": "yarn jest",
+    "test:dev": "yarn jest --watch",
+    "build": "microbundle",
+    "dev": "microbundle watch"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-typescript": "^7.13.0",
+    "babel-jest": "^26.6.3",
+    "microbundle": "^0.13.0"
+  }
+}
