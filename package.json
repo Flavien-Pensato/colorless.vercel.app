@@ -1,0 +1,44 @@
+{
+  "name": "@colorless/project",
+  "version": "1.0.0",
+  "description": "Get tint and shade of colors",
+  "repository": "git@github.com:Flavien-Pensato/colorless.vercel.app.git",
+  "author": "Flavien-Pensato <flavien.pensato@aventus.io>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/core",
+    "packages/app"
+  ],
+  "scripts": {
+    "dev:core": "yarn workspace @colorless/core dev",
+    "build:core": "yarn workspace @colorless/core build",
+    "dev:app": "yarn workspace @colorless/app dev",
+    "build:app": "yarn workspace @colorless/app build",
+    "prettier-check": "prettier -c .",
+    "prettier": "prettier --write .",
+    "lint-check": "eslint '*/**/*.{js,ts,tsx}'",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --fix",
+    "type-check": "tsc --pretty --noEmit",
+    "format": "yarn prettier && yarn lint",
+    "jest": "jest --verbose",
+    "test-all": "yarn lint && yarn type-check && yarn jest",
+    "update-snapshots": "jest --updateSnapshot"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.24.0",
+    "@typescript-eslint/parser": "^4.24.0",
+    "eslint": "^7.26.0",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-react": "^7.23.2",
+    "jest": "^26.6.3",
+    "jest-watch-typeahead": "^0.6.3",
+    "prettier": "^2.3.0",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "next": "^10.2.3"
+  }
+}
