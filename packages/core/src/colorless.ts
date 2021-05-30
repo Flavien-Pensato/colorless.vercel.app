@@ -7,15 +7,17 @@ export interface IColorlessOptions {
   unit: Units
 }
 
-// const RGBtoHEX = (red, green, blue) => {
-//   return "#" + ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1);
-// }
+export const RGBtoHEX = (red: number, green: number, blue: number): string => {
+    const bin = red << 16 | green << 8 | blue;
+    return "#" + (function(h){
+        return new Array(7-h.length).join("0")+h;
+    })(bin.toString(16).toUpperCase());
+};
 
-// const HextoRGB = (hex: string) => {
-//   const bigint = parseInt(hex, 16);
-
-//   return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255]
-// }
+export const HextoRGB = (hex: string): Array<number> => {
+  const hexaParse = parseInt(hex.charAt(0) === "#" ? hex.slice(1) : hex,16);
+  return [hexaParse >> 16,     hexaParse >> 8 & 0xFF, hexaParse & 0xFF];
+};
 
 // export const tint = (red, green, blue, factor: number) => {
 //   return RGBtoHEX(red + (255 - red) * factor, green + (255 - green) * factor, blue + (255 - blue) * factor)
