@@ -2,6 +2,9 @@
 
 export type Units = "hex" | "rgb"
 export type Color = string | Array<number>
+export type RGB = [number, number, number]
+export type HEX = string
+
 
 export interface IColorlessOptions {
   unit: Units
@@ -17,7 +20,7 @@ export const RGBtoHEX = (red: number, green: number, blue: number): string => {
   );
 };
 
-export const HextoRGB = (hex: string): Array<number> => {
+export const HextoRGB = (hex: string): RGB => {
   const hexaParse = parseInt(hex.charAt(0) === "#" ? hex.slice(1) : hex, 16);
   return [hexaParse >> 16, (hexaParse >> 8) & 0xff, hexaParse & 0xff];
 };
@@ -45,7 +48,7 @@ export const shade = (
 };
 
 export const toGrid = (color: string): Record<string, string> => {
-  const rgb = HextoRGB(color);
+  const rgb: [number, number,number]= HextoRGB(color);
   const grid = [
     { type: "tint", value: 0.9, label: "50" },
     { type: "tint", value: 0.8, label: "100" },
@@ -61,8 +64,6 @@ export const toGrid = (color: string): Record<string, string> => {
 
   return grid.reduce((acc, { label, type, value }) => {
     const transform = type === "shade" ? shade : tint;
-
-    console.log(...rgb, value);
 
     acc[label] = transform(...rgb, value);
 
