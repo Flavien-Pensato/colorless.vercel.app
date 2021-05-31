@@ -19,16 +19,15 @@ export const HextoRGB = (hex: string): Array<number> => {
   return [hexaParse >> 16,     hexaParse >> 8 & 0xFF, hexaParse & 0xFF];
 };
 
-// export const tint = (red, green, blue, factor: number) => {
-//   return RGBtoHEX(red + (255 - red) * factor, green + (255 - green) * factor, blue + (255 - blue) * factor)
-// }
+export const tint = (red: number, green: number, blue: number, factor: number):string => {
+  return RGBtoHEX(red + (255 - red) * factor, green + (255 - green) * factor, blue + (255 - blue) * factor);
+};
 
-// const shade = (red, green, blue,factor:number) => {
-//   return RGBtoHEX(red * (1 - factor), green * (1 - factor), blue * (1 - factor))
-// }
+export const shade = (red: number, green: number, blue: number,factor:number): string => {
+  return RGBtoHEX(red * (1 - factor), green * (1 - factor), blue * (1 - factor));
+};
 
 class Colorless {}
-
 
 // class Colorless {
 //   private _color: Color
