@@ -5,9 +5,20 @@ export type Color = string | Array<number>
 export type RGB = [number, number, number]
 export type HEX = string
 
-
 export interface IColorlessOptions {
   unit: Units
+}
+
+export const isValideHex = (color: string) => {
+  if (!color ) {
+    return false
+  }
+
+  const lowerColor = color.charAt(0) === '#' ? color.slice(1).toLowerCase() : color.toLowerCase();
+
+  const numberColor = parseInt(lowerColor, 16);
+
+  return numberColor.toString(16) === lowerColor;
 }
 
 export const RGBtoHEX = (red: number, green: number, blue: number): string => {
@@ -50,16 +61,16 @@ export const shade = (
 export const toGrid = (color: string): Record<string, string> => {
   const rgb: [number, number,number]= HextoRGB(color);
   const grid = [
-    { type: "tint", value: 0.9, label: "50" },
-    { type: "tint", value: 0.8, label: "100" },
-    { type: "tint", value: 0.6, label: "200" },
-    { type: "tint", value: 0.4, label: "300" },
-    { type: "tint", value: 0.2, label: "400" },
+    { type: "tint", value: 0.8, label: "50" },
+    { type: "tint", value: 0.6, label: "100" },
+    { type: "tint", value: 0.45, label: "200" },
+    { type: "tint", value: 0.3, label: "300" },
+    { type: "tint", value: 0.15, label: "400" },
     { type: "shade", value: 0, label: "500" },
-    { type: "shade", value: 0.2, label: "600" },
-    { type: "shade", value: 0.4, label: "700" },
-    { type: "shade", value: 0.6, label: "800" },
-    { type: "shade", value: 0.8, label: "900" }
+    { type: "shade", value: 0.15, label: "600" },
+    { type: "shade", value: 0.3, label: "700" },
+    { type: "shade", value: 0.45, label: "800" },
+    { type: "shade", value: 0.6, label: "900" }
   ];
 
   return grid.reduce((acc, { label, type, value }) => {
