@@ -1,6 +1,6 @@
 {
-  "name": "@colorless/core",
-  "version": "1.0.0",
+  "name": "colorless-core",
+  "version": "0.0.0",
   "type": "module",
   "description": "Get tint and shade of colors",
   "source": "./src/colorless.ts",

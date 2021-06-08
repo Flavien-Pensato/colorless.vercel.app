@@ -1,10 +1,12 @@
 {
-  "extends": "../../config/next.tsconfig.json",
-  "include": ["next-env.d.ts", "**/*.ts", "scripts/*.ts"],
+  "include": ["next-env.d.ts", "src/*.ts"],
   "compilerOptions": {
-    "module": "CommonJS",
-    "target": "ES2017",
-    "isolatedModules": false
+    "target": "es5",
+    "declaration": true,
+    "outDir": "dist",
+    "strict": true,
+    "sourceMap": false,
+    "lib": ["dom", "es5", "scripthost", "es2015.promise"]
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "__test__"]
 }

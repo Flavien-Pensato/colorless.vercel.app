@@ -1,10 +1,16 @@
 export type RGB = [number, number, number]
 export type HEX = string
 export type Label = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
-
+export type Transformer = 'shade' | 'tint'
 export interface Shade {
   label: Label
   value: HEX
+}
+
+export interface ShadeConfig {
+  type: Transformer
+  value: number
+  label: Label
 }
 
 export const isValideHex = (color: string) => {
@@ -58,34 +64,32 @@ export const shade = (
 class Colorless {
   private _grid: Record<Label, HEX>
   private _color: HEX
+  private _gridConfig: ShadeConfig[] = [
+    { type: "tint", value: 0.9, label: "50" },
+    { type: "tint", value: 0.8, label: "100" },
+    { type: "tint", value: 0.6, label: "200" },
+    { type: "tint", value: 0.4, label: "300" },
+    { type: "tint", value: 0.2, label: "400" },
+    { type: "shade", value: 0, label: "500" },
+    { type: "shade", value: 0.15, label: "600" },
+    { type: "shade", value: 0.3, label: "700" },
+    { type: "shade", value: 0.45, label: "800" },
+    { type: "shade", value: 0.6, label: "900" }
+  ]
   
   constructor(color:HEX) {
-    this.color = color;
-  }
-
-  set color(color: HEX) {
     if (isValideHex(color)) {
       this._color = color;
       this._grid = this.toGrid()
+    } else {
+      throw new Error('color is not valid')
     }
   }
 
   private toGrid(): Record<Label, HEX> {
     const rgb = HextoRGB(this._color);
-    const grid = [
-      { type: "tint", value: 0.9, label: "50" },
-      { type: "tint", value: 0.8, label: "100" },
-      { type: "tint", value: 0.6, label: "200" },
-      { type: "tint", value: 0.4, label: "300" },
-      { type: "tint", value: 0.2, label: "400" },
-      { type: "shade", value: 0, label: "500" },
-      { type: "shade", value: 0.15, label: "600" },
-      { type: "shade", value: 0.3, label: "700" },
-      { type: "shade", value: 0.45, label: "800" },
-      { type: "shade", value: 0.6, label: "900" }
-    ];
   
-    return grid.reduce((acc, { label, type, value }) => {
+    return this._gridConfig.reduce((acc, { label, type, value }) => {
       const transform = type === "shade" ? shade : tint;
   
       acc[label] = transform(...rgb, value);
