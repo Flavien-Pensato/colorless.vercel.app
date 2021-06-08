@@ -7,7 +7,8 @@ export interface ColorFormProps {
 }
 
 export const ColorForm = ({ onSubmit }: ColorFormProps) => {
-  const onKeyDown = (event: KeyboardEvent) => {
+  // TODO: correct type
+  const onKeyDown = (event: any) => {
     if (event.key === 'Enter') {
       event.preventDefault()
 

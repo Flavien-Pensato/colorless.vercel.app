@@ -4,7 +4,7 @@ import { HEX } from '@colorless/core/src/colorless'
 
 export interface ColorSquareProps {
   color: HEX
-  size?: number
+  size?: string
 }
 
 export const ColorSquare = ({ color, size = '42px' }: ColorSquareProps) => {
