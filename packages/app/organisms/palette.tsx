@@ -1,43 +1,42 @@
-import { Flex, Box, SimpleGrid } from '@chakra-ui/react'
-import { toGrid } from '@colorless/core/src/colorless'
+import { Flex, Box, SimpleGrid, ScaleFade } from '@chakra-ui/react'
+import Colorless from '@colorless/core/src/colorless'
 import { useState } from 'react'
-import { ColorForm, ColorTag, ColorTagProps } from '../molecules'
+import { ColorForm, ColorTag } from '../molecules'
+import { ButtonCopyGrid } from '../molecules/ButtonCopyGrid'
 
 export const Palette = (): JSX.Element => {
-  const [grid, setGrid] = useState<Array<ColorTagProps>>([])
-
+  const [showGrid, setShowGrid] = useState(false)
+  const [grid, setGrid] = useState<Colorless>()
   const handleSubmit = color => {
-    console.log(color)
     if (color !== '') {
-      const colorGrid = toGrid(color)
+      const colorGrid = new Colorless(color)
 
-      const newGrid = Object.keys(colorGrid).map(label => ({
-        label,
-        color: colorGrid[label]
-      }))
-
-      setGrid(newGrid)
+      setGrid(colorGrid)
+      setShowGrid(true)
     } else {
-      setGrid([])
+      setShowGrid(false)
     }
   }
 
   return (
     <Flex justifyContent='center' my='20'>
-      <Box maxW='400px' p='30px'>
+      <Box maxW='400px' p='30px' padding='5'>
         <ColorForm onSubmit={handleSubmit} />
       </Box>
-      <Box
-        maxW='400px'
-        transition='width 1s ease'
-        width={grid.length === 0 ? '0%' : '100%'}
-      >
-        <SimpleGrid columns={3} spacing={4}>
-          {grid.map(({ color, label }) => (
-            <ColorTag key={label} label={label} color={color}></ColorTag>
-          ))}
-        </SimpleGrid>
-      </Box>
+      <ScaleFade initialScale={0.9} in={showGrid}>
+        <Box maxW='400px'>
+          {grid && (
+            <>
+              <SimpleGrid columns={3} spacing={4}>
+                {grid?.toArray().map(({ value, label }) => (
+                  <ColorTag key={label} label={label} color={value}></ColorTag>
+                ))}
+              </SimpleGrid>
+              <ButtonCopyGrid grid={grid} />
+            </>
+          )}
+        </Box>
+      </ScaleFade>
     </Flex>
   )
 }

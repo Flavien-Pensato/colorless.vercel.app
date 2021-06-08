@@ -1,12 +1,10 @@
-// const hexaBase = 16
-
-export type Units = "hex" | "rgb"
-export type Color = string | Array<number>
 export type RGB = [number, number, number]
 export type HEX = string
+export type Label = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
 
-export interface IColorlessOptions {
-  unit: Units
+export interface Shade {
+  label: Label
+  value: HEX
 }
 
 export const isValideHex = (color: string) => {
@@ -15,7 +13,6 @@ export const isValideHex = (color: string) => {
   }
 
   const lowerColor = color.charAt(0) === '#' ? color.slice(1).toLowerCase() : color.toLowerCase();
-
   const numberColor = parseInt(lowerColor, 16);
 
   return numberColor.toString(16) === lowerColor;
@@ -41,7 +38,7 @@ export const tint = (
   green: number,
   blue: number,
   factor: number
-): string => {
+): HEX => {
   return RGBtoHEX(
     red + (255 - red) * factor,
     green + (255 - green) * factor,
@@ -54,34 +51,66 @@ export const shade = (
   green: number,
   blue: number,
   factor: number
-): string => {
+): HEX => {
   return RGBtoHEX(red * (1 - factor), green * (1 - factor), blue * (1 - factor));
 };
 
-export const toGrid = (color: string): Record<string, string> => {
-  const rgb: [number, number,number]= HextoRGB(color);
-  const grid = [
-    { type: "tint", value: 0.8, label: "50" },
-    { type: "tint", value: 0.6, label: "100" },
-    { type: "tint", value: 0.45, label: "200" },
-    { type: "tint", value: 0.3, label: "300" },
-    { type: "tint", value: 0.15, label: "400" },
-    { type: "shade", value: 0, label: "500" },
-    { type: "shade", value: 0.15, label: "600" },
-    { type: "shade", value: 0.3, label: "700" },
-    { type: "shade", value: 0.45, label: "800" },
-    { type: "shade", value: 0.6, label: "900" }
-  ];
+class Colorless {
+  private _grid: Record<Label, HEX>
+  private _color: HEX
+  
+  constructor(color:HEX) {
+    this.color = color;
+  }
 
-  return grid.reduce((acc, { label, type, value }) => {
-    const transform = type === "shade" ? shade : tint;
+  set color(color: HEX) {
+    if (isValideHex(color)) {
+      this._color = color;
+      this._grid = this.toGrid()
+    }
+  }
 
-    acc[label] = transform(...rgb, value);
+  private toGrid(): Record<Label, HEX> {
+    const rgb = HextoRGB(this._color);
+    const grid = [
+      { type: "tint", value: 0.9, label: "50" },
+      { type: "tint", value: 0.8, label: "100" },
+      { type: "tint", value: 0.6, label: "200" },
+      { type: "tint", value: 0.4, label: "300" },
+      { type: "tint", value: 0.2, label: "400" },
+      { type: "shade", value: 0, label: "500" },
+      { type: "shade", value: 0.15, label: "600" },
+      { type: "shade", value: 0.3, label: "700" },
+      { type: "shade", value: 0.45, label: "800" },
+      { type: "shade", value: 0.6, label: "900" }
+    ];
+  
+    return grid.reduce((acc, { label, type, value }) => {
+      const transform = type === "shade" ? shade : tint;
+  
+      acc[label] = transform(...rgb, value);
+  
+      return acc;
+    }, <Record<Label, HEX>>{});
+  };
+  
 
-    return acc;
-  }, {});
-};
+  toString(): string {
+    return JSON.stringify(this._grid)
+  }
 
-class Colorless {}
+  toArray(): Shade[] {
+    const labels = Object.keys(this._grid) as Array<Label>
+
+    const array = labels.map<Shade>((label) => {
+      return {
+        label: label,
+        value: this._grid[label]
+      }
+    })
+
+    return array
+  }
+}
 
 export default Colorless;

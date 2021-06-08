@@ -13,7 +13,6 @@ export const ColorForm = ({ onSubmit }: ColorFormProps) => {
 
       const color = event.target?.value
 
-      console.log(isValideHex(color))
       if (isValideHex(color) || color === '') {
         onSubmit(color)
       }
@@ -25,7 +24,7 @@ export const ColorForm = ({ onSubmit }: ColorFormProps) => {
       <FormLabel>Color</FormLabel>
       <Input onKeyDown={onKeyDown} />
       <FormHelperText>
-        Enter your favorite color to create a palette.
+        Enter your favorite hexa color to create a palette.
       </FormHelperText>
     </FormControl>
   )
