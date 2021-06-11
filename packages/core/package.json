@@ -15,7 +15,7 @@
     "jest": "NODE_ENV=test jest",
     "test": "yarn jest",
     "test:dev": "yarn jest --watch",
-    "build": "microbundle --tsconfig tsconfig.package.json",
+    "build": "microbundle --tsconfig tsconfig.package.json --no-sourcemap",
     "dev": "microbundle watch",
     "publish": "npm publish",
     "prepublish": "build"
