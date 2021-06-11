@@ -1,6 +1,6 @@
 import { useClipboard, Button } from '@chakra-ui/react'
 import { CopyIcon } from '@chakra-ui/icons'
-import Colorless from '@colorless/core/src/colorless'
+import { Colorless } from 'colorless-core/src/colorless'
 
 export interface ButtonCopyGridProps {
   grid: Colorless

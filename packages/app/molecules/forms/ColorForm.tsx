@@ -1,5 +1,5 @@
 import React from 'react'
-import { isValideHex } from '@colorless/core/src/colorless'
+import { isValideHex } from 'colorless-core/src/colorless'
 import { FormControl, FormLabel, FormHelperText, Input } from '@chakra-ui/react'
 
 export interface ColorFormProps {

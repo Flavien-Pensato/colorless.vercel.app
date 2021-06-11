@@ -61,7 +61,7 @@ export const shade = (
   return RGBtoHEX(red * (1 - factor), green * (1 - factor), blue * (1 - factor));
 };
 
-class Colorless {
+export class Colorless {
   private _grid: Record<Label, HEX>
   private _color: HEX
   private _gridConfig: ShadeConfig[] = [
@@ -97,7 +97,11 @@ class Colorless {
       return acc;
     }, <Record<Label, HEX>>{});
   };
-  
+
+  toJSON(): Record<Label, string> {
+    return this._grid
+  }
+
 
   toString(): string {
     return JSON.stringify(this._grid)
@@ -116,5 +120,3 @@ class Colorless {
     return array
   }
 }
-
-export default Colorless;

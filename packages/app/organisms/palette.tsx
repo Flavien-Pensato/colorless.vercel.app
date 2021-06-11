@@ -1,5 +1,5 @@
 import { Flex, Box, SimpleGrid, ScaleFade } from '@chakra-ui/react'
-import Colorless from '@colorless/core/src/colorless'
+import { Colorless } from 'colorless-core/src/colorless'
 import { useState } from 'react'
 import { ColorForm, ColorTag } from '../molecules'
 import { ButtonCopyGrid } from '../molecules/ButtonCopyGrid'

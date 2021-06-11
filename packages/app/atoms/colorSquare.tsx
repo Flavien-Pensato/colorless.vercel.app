@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
-import { HEX } from '@colorless/core/src/colorless'
+import { HEX } from 'colorless-core/src/colorless'
 
 export interface ColorSquareProps {
   color: HEX

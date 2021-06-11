@@ -11,13 +11,55 @@ Colorless is library that allow you to transform easily color _format_ and gener
 # Install
 
 ```bash
-npm install @colorless/core
+npm install colorless-core
 ```
 
 or
 
 ```bash
-yarn add @colorless/core
+yarn add colorless-core
+```
+
+# Usage
+
+## Tint
+
+Tint accept 4 arguments
+
+- First 3 are rgb color
+- The fourth is a factor of tint
+
+```js
+import { tint } from 'colorless-core'
+
+const tintedColor = tint(255, 255, 255, 0.5)
+```
+
+## Shade
+
+Shade accept 4 arguments
+
+- First 3 are rgb color
+- The fourth is a factor of shade
+
+```js
+import { tint } from 'colorless-core'
+
+const shadedColor = shade(0, 0, 0, 0.5)
+```
+
+## Colorless
+
+Colorless accept as argument a hex color
+
+```js
+import { Colorless } from 'colorless-core'
+
+const instace = Colorless('#FF00')
+
+instance.toString()
+instance.toJSON()
+instance.toMap()
 ```
 
 # App

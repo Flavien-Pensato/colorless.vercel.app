@@ -11,8 +11,8 @@
     "packages/app"
   ],
   "scripts": {
-    "dev:core": "yarn workspace @colorless/core dev",
-    "build:core": "yarn workspace @colorless/core build",
+    "dev:core": "yarn workspace colorless-core dev",
+    "build:core": "yarn workspace colorless-core build",
     "dev:app": "yarn workspace @colorless/app dev",
     "build:app": "yarn workspace @colorless/app build",
     "prettier-check": "prettier -c .",

@@ -19,7 +19,7 @@
     "noUnusedLocals": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@colorless/*": ["../packages/*"]
+      "colorless-core": ["../packages/colorless-core"]
     }
   },
   "exclude": ["node_modules", ".next", "out", "dist"],

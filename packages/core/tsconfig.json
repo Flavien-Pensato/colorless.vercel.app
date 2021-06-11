@@ -4,7 +4,7 @@
   "compilerOptions": {
     "module": "CommonJS",
     "target": "ES2017",
-    "isolatedModules": false
+    "isolatedModules": true
   },
   "exclude": ["node_modules", "__test__"]
 }
