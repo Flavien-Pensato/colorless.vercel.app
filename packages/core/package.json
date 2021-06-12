@@ -1,6 +1,6 @@
 {
   "name": "colorless-core",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "type": "module",
   "description": "Get tint and shade of colors",
   "source": "./src/colorless.ts",
@@ -11,11 +11,18 @@
   "repository": "git@github.com:Flavien-Pensato/colorless.vercel.app.git/packages/colorless",
   "homepage": "https://github.com/Flavien-Pensato/colorless.vercel.app/#readme",
   "bugs": {
-    "url" : "https://github.com/Flavien-Pensato/colorless.vercel.app/issues",
-    "email" : "flavien.pensato@gmail.com"
+    "url": "https://github.com/Flavien-Pensato/colorless.vercel.app/issues",
+    "email": "flavien.pensato@gmail.com"
   },
   "author": "Flavien-Pensato <flavien.pensato@gmail.com>",
-  "keywords": ["color", "hex", "rgb", "palette", "tint", "shade"],
+  "keywords": [
+    "color",
+    "hex",
+    "rgb",
+    "palette",
+    "tint",
+    "shade"
+  ],
   "license": "MIT",
   "scripts": {
     "jest": "NODE_ENV=test jest",
